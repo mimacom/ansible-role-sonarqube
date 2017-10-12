@@ -7,12 +7,12 @@
     pull: "{{ docker_pull_image | default('no') }}"
     ports:
       - "{{ sonarqube_port | default('9000') }}:9000"
-#    links:
-#      - postgresql:db
+    links:
+      - postgresql:db
     env:
       SONARQUBE_JDBC_USERNAME: "{{ postgresql_user }}"
       SONARQUBE_JDBC_PASSWORD: "{{ postgresql_password }}"
-#      SONARQUBE_JDBC_URL: "jdbc:postgresql://db/{{ postgresql_database }}"
+      SONARQUBE_JDBC_URL: "jdbc:postgresql://db/{{ postgresql_database }}"
       SONARQUBE_JDBC_URL: "{{ jdbc_url }}"
     volumes:
       - sonarqube-conf:/opt/sonarqube/conf
